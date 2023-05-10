@@ -29,6 +29,11 @@
     url = "/about-us/history/"
     weight = 4
     parent = "about-us"
+[[main]]
+    name = "News"
+    url = "/news/"
+    weight = 4
+    parent = "about-us"
     
 [[main]]
     name = "Directory"
@@ -62,12 +67,12 @@
     parent = "activities"
 [[main]]
     name = "Blogs by R-Ladies"
-    url = "activities/rladies-blogs"
+    url = "/activities/rladies-blogs"
     weight = 6
     parent = "activities"
 [[main]]
     name = "Na imprensa"
-    url = "activities/press"
+    url = "/press"
     weight = 7
     parent = "activities"  
     

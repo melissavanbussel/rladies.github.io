@@ -1,0 +1,2 @@
+baseURL = "https://www.rladies.org/"
+disableLanguages = ["fr", "pt", "es"]

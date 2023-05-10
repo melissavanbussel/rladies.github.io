@@ -1,5 +1,6 @@
 ---
 title: "Sponsors"
-type: "cards"
-weight: 4
+type: "sponsors"
+weight: 99
+home: true
 ---

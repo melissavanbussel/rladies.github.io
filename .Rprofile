@@ -1,3 +1,4 @@
+source("renv/activate.R")
 # Project Renvironment in this case must take
 # precedent over user Renvironment.
 if (file.exists("~/.Rprofile")) {
@@ -11,5 +12,5 @@ options(
   blogdown.ext = ".Rmd",
   blogdown.subdir = "blog",
   blogdown.title_case = TRUE,
-  blogdown.hugo.version = "0.101.0"
+  blogdown.hugo.version = "0.111.2"
 )

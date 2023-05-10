@@ -6,35 +6,16 @@
 
 
 {{ define "main"}}
-    <h2 class="section-title" id="home-news">
-      <a href="./news"><span>{{ i18n "news" }}</span></a>
-    </h2>
-    {{ range first 1 (where site.RegularPages "Type" "news") }}
-      {{ partial "post/summary.html" . }}
-    {{ end }}
 
-    {{ range .Site.Sections }}
-      {{ range .Sections.ByWeight }}
-        <div id="{{ .Title }}" class="row section  topspace">
-          <h2 class="section-title">
-            <span>{{.Title}}</span>
-          </h2>
-          {{ $stype := .Type}}
-          {{ if eq $stype "single"  }}
-            <div class="text-align-center">
-              <p>{{ .Content }}</p> 
-            </div>
-          {{ else }}
-            {{ partial (printf "home/%s.html" $stype) . }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
-    </div>
-    <h2 class="section-title" id="home-blog">
-      <a href="./blog"><span>{{ i18n "blog" }}</span></a>
-    </h2>
-    {{ range first 1 (where site.RegularPages "Type" "blog") }}
-      {{ partial "post/summary.html" . }}
-    {{ end }}
+  {{ partial "home/counters.html" . }}
+
+  {{ partial "home/directory.html" . }}
+  
+  {{ partial "home/chapters.html" . }}
+
+  {{ partial "home/feed.html" . }}
+  
+  {{ partial "home/sponsors.html" . }}
+  
 {{ end }}
 

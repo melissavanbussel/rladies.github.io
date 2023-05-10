@@ -8,9 +8,9 @@
   					<p>{{ if .Site.Params.phone }}{{ .Site.Params.phone | markdownify }}<br>{{ end }}
   					{{ if .Site.Params.email }}<a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email | markdownify }}</a><br>{{ end }}
   						<br>
-  						<h3 class="widget-title">{{ i18n "donate" }} R-Ladies</h3>
+  						<h3 class="widget-title">{{ i18n "footer_donate" }} R-Ladies</h3>
   						<p class="follow-me-icons">
-  						  <a href="https://www.paypal.com/donate?token=8CwuseU4vQiiUdEWr5T2UlN49xfPPbPWBySI34ra3EdAHBa9smM4W6vK6n0NJN7uvD9jS6s34hImjffz" target="_blank">
+  						  <a href="https://www.paypal.com/donate/?hosted_button_id=VB4EK67MJ373E" target="_blank">
   						    <i class="fab fa-cc-paypal fa-4x" aria-hidden="true"></i>
   						  </a>
   						</p>
@@ -50,19 +50,26 @@
             {{ i18n "footer_lang_title" . | markdownify }}
           </h3>
           <div class="widget-body">
-            <nav class="language-selector layout__language-selector" style = "list-style: none;">
-            {{ if .IsTranslated -}}
-              {{ range .Translations }}
-                <li><a rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}">{{ .Language.LanguageName }}</a></li>
-              {{ end -}}
-            {{ else -}}
-              {{ range .Site.Languages -}}
-                {{ if ne $.Site.Language.Lang .Lang }}
-                  <li><a rel="alternate" href="{{ .Lang | relURL }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}">{{ .LanguageName }}</a></li>
-                {{ end -}}
-              {{ end -}}
-            {{ end -}}
-            </nav>
+    				{{- if site.IsMultiLingual }}
+    				<select id="select-language" onchange="location = this.value;">
+    					{{ $siteLanguages := site.Languages}}
+    					{{ $pageLang := .Page.Lang}}
+      					{{ range .Page.AllTranslations }}
+      					{{ $translation := .}}
+        					{{ range $siteLanguages }}
+          					{{ if eq $translation.Lang .Lang }}
+          					{{ $selected := false }}
+            					{{ if eq $pageLang .Lang}}
+            					  <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+            					  </option>
+            					{{ else }}
+            					  <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+            					{{ end }}
+          					{{ end }}
+        					{{ end }}
+      					{{ end }}
+    				</select>
+    				{{ end }}
           </div>
         </div>
       {{ end }}

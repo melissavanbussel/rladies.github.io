@@ -1,8 +1,14 @@
-source(here::here("scripts/utils.R"))
-library(meetupr)
 library(dplyr)
 library(tidyr)
 library(stringr)
+
+# change empty to NA
+change_empty <- function(x) ifelse(x == "", NA, x)
+
+na_col_rm <- function(data){
+  idx <- apply(data, 2, function(x) all(is.na(x)))
+  data[, !idx]
+}
 
 some_cols <- c("meetup", "twitter", "email", "facebook", "instagram", "linkedin", 
                "periscope", "youtube", "github", "website", "slack", "mastodon")
@@ -20,6 +26,7 @@ chapters <- read.table(
                      paste(country, state.region, city, sep = "-"),
                      paste(country, city, sep = "-")),
     filenm = paste0(tolower(filenm), ".json"),
+    filenm = gsub(" ", "-", filenm),
     status = tolower(status)
   ) |> 
   mutate(
