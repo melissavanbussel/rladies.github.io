@@ -9,7 +9,6 @@ author:
 date: '2023-05-06'
 slug: []
 categories:
-  - r-ladies
   - R-Ladies
   - community
   - latin america
